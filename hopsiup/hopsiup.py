@@ -32,5 +32,24 @@ def add_link():
     g.db.execute('insert into links (link, title, user_id) values (?, ?)',
                  [request.form('url'), request.form['title'], request.form['user_id']])
 
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    error = None
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+        data = g.db.execute('select login, password from users')
+        users_from_db = [dict(login=row[0], password=row[1])\
+                for row in data.fetchall()]
+        if a not in users_from_db:
+            error = 'Invalid username'
+        elif users_from_db[a] != password:
+            error = 'Invalid password'
+        else:
+            session['logged_in'] = True
+            flash('You were logged in')
+            return redirect(url_for('show_main'))
+    return render_template('login.html', error=error)
+
 if __name__ == '__main__':
     app.run()
