@@ -51,5 +51,11 @@ def login():
             return redirect(url_for('show_main'))
     return render_template('login.html', error=error)
 
+@app.route('/logout')
+def logout():
+    session.pop('logged_in', None)
+    flash('You were logged out')
+    return redirect(url_for('show_main'))
+
 if __name__ == '__main__':
     app.run()
