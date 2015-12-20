@@ -8,5 +8,22 @@ app.config.from_object('init')
 def connect_db():
     return sqlite3.connect(app.config['DATABASE'])
 
+@app.before_request
+def before_request():
+    g.db = connect_db()
+
+@app.teardown_request
+def teardown_request(exception):
+    db = getattr(g, 'db', None)
+    if db is not None:
+        db.close()
+
+@app.route('/')
+def show_main():
+    data = g.db.execute('select l.title, u.login from links as l,' +\
+            'users as u on l.user_id = u.user_id order by lpoints desc')
+    links = [dict(title=row[0], user=row[1]) for row in data.fetchall()]
+    return render_template('show_links.html', links=links)
+
 if __name__ == '__main__':
     app.run()
