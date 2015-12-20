@@ -23,7 +23,7 @@ def show_main():
     data = g.db.execute('select l.title, u.login from links as l,' +\
             'users as u on l.user_id = u.user_id order by lpoints desc')
     links = [dict(title=row[0], user=row[1]) for row in data.fetchall()]
-    return render_template('show_links.html', links=links)
+    return render_template('layout.html', links=links)
 
 @app.route('/add', methods=['POST'])
 def add_link():
