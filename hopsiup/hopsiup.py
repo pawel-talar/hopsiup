@@ -25,5 +25,12 @@ def show_main():
     links = [dict(title=row[0], user=row[1]) for row in data.fetchall()]
     return render_template('show_links.html', links=links)
 
+@app.route('/add', methods=['POST'])
+def add_link():
+    if not session.get('logged_in'):
+        abort(401)
+    g.db.execute('insert into links (link, title, user_id) values (?, ?)',
+                 [request.form('url'), request.form['title'], request.form['user_id']])
+
 if __name__ == '__main__':
     app.run()
