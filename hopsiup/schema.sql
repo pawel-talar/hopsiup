@@ -15,6 +15,7 @@ create table links (
     link_id integer primary key autoincrement,
     link text not null,
     title text not null,
+    description text not null default 'brak opisu',
     user_id integer not null,
     lpoints integer not null default(0),
     foreign key(user_id) references users(user_id)
