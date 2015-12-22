@@ -1,5 +1,6 @@
 {% extends "layout.html" %}
 {% block body %}
+  <div id="session">
   {% if session.logged_in %}
     <form action="{{ url_for('add_entry') }}" method=post class=add-entry>
       <dl>
@@ -11,7 +12,7 @@
       </dl>
     </form>
   {% endif %}
-    <h2>HopSiup</h2>
+  </div>
     <ul>
     {% for link in links %}
         <li>
