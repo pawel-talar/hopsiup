@@ -16,7 +16,9 @@
     <ul class="links">
     {% for link in links %}
         <li>
+            <div class="lpoints">{{ link.points }}</div>
             <a href="l/{{link.id}}">{{link.title}} </a> dodany przez<a href="u/{{link.user_url}}"> {{link.user}}</a>
+            <p>{{ link.desc }}</p>
         </li>
     {% endfor %}
     </ul>
