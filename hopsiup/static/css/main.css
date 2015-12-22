@@ -2,3 +2,9 @@ html, body * {
     background-color: #444444;
     color: #e1e1e1;
 }
+ul.links li {
+    list-style-type: none;
+    list-style-image: none;
+    color: #9C1A1C;
+    border: solid #11557C;
+}
