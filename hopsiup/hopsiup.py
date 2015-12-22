@@ -20,9 +20,9 @@ def teardown_request(exception):
 
 @app.route('/')
 def show_main():
-    data = g.db.execute('select l.title, u.login from links as l,' +\
+    data = g.db.execute('select l.link_id, l.title, u.login from links as l,' +\
             'users as u on l.user_id = u.user_id order by lpoints desc')
-    links = [dict(title=row[0], user=row[1]) for row in data.fetchall()]
+    links = [dict(id=row[0], title=row[1], user=row[2]) for row in data.fetchall()]
     return render_template('show_links.html', links=links)
 
 @app.route('/add', methods=['POST'])
