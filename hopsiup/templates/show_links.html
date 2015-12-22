@@ -1,12 +1,18 @@
-<html>
-    <head>
-    </head>
-    <body>
-        <h2>HopSiup</h2>
-        <ul>
-        {% for link in links %}
-        <li>{{link.title}} dodany przez {{link.user}}</li>
-        {% endfor %}
-        </ul>
-    </body>
-</html>
+{% extends "layout.html" %}
+{% block body %}
+  {% if session.logged_in %}
+    <form action="{{ url_for('add_entry') }}" method=post class=add-entry>
+      <dl>
+        <dt>Title:
+        <dd><input type=text size=30 name=title>
+        <dt>Text:
+        <dd><textarea name=text rows=5 cols=40></textarea>
+        <dd><input type=submit value=Share>
+      </dl>
+    </form>
+  {% endif %}
+    <h2>HopSiup</h2>
+    <ul>{% for link in links %}<li>{{link.title}} dodany przez {{link.user}}</li>
+    {% endfor %}
+    </ul>
+{% endblock %}
