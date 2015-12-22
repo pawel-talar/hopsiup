@@ -8,3 +8,27 @@ ul.links li {
     color: #9C1A1C;
     border: solid #11557C;
 }
+
+header ul {
+    float: left;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+    list-style-image: none;
+}
+header a {
+    float: left;
+    width: 6em;
+    text-decoration: none;
+    color: white;
+    background-color: purple;
+    padding: 0.2em 0.6em;
+    border-right: 1px solid white;
+    list-style-type: none;
+    list-style-image: none;
+}
+
+header li {
+    display: inline;
+}
