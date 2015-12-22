@@ -25,6 +25,13 @@ def show_main():
     links = [dict(id=row[0], title=row[1], user=row[2]) for row in data.fetchall()]
     return render_template('show_links.html', links=links)
 
+@app.route('/l/<id>')
+def show_link_page(id=None):
+    data = g.db.execute('select l.link, l.title, u.login from links as l,' +
+            'users as u on l.user_id == u.user_id where l.link_id={0}'.format(id))
+    link_infos = [dict(id=row[0], title=row[1], author=row[2]) for row in data.fetchall()]
+    return render_template('link_page.html', link_info=link_infos[0])
+
 @app.route('/add', methods=['POST'])
 def add_link():
     if not session.get('logged_in'):

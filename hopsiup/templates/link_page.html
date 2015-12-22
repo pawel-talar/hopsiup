@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+
+{% block body %}
+    <div class="link_info">
+
+        <h1>{{ link_info.title }}</h1>
+
+        <div class="link_desc">
+            {{ link_info.desc }}
+            Dodał: {{ link_info.author }}
+        </div>
+    </div>
+{% endblock %}
