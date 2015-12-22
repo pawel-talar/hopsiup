@@ -64,5 +64,11 @@ def logout():
     flash('You were logged out')
     return redirect(url_for('show_main'))
 
+@app.route('/ranking')
+def ranking():
+    data = g.db.execute('select login, upoints from users order by upoints')
+    users = [dict(login=row[0], points=row[1]) for row in data.fetchall()]
+    return render_template('ranking.html', users=users)
+
 if __name__ == '__main__':
     app.run()
