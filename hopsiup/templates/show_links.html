@@ -12,7 +12,11 @@
     </form>
   {% endif %}
     <h2>HopSiup</h2>
-    <ul>{% for link in links %}<li>{{link.title}} dodany przez {{link.user}}</li>
+    <ul>
+    {% for link in links %}
+        <li>
+            <a href "{{link.url}}">{{link.title}} </a> dodany przez<a href="{{link.user_url}}>"> {{link.user}}</a>
+        </li>
     {% endfor %}
     </ul>
 {% endblock %}
