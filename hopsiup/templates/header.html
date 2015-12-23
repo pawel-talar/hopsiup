@@ -1,4 +1,12 @@
 <header>
-    <front size="34"> HOP SIUP </front>
-    <li><a href="{{ url_for('login') }}">Zaloguj się!</a></li>
+    <center><front size="34"> HOP SIUP </front></center>
+    <li><a href="{{ url_for('login') }}">Główna</a></li>
+    <li><a href="{{ url_for('login') }}">Poczekalnia</a></li>
+    <li><a href="{{ url_for('login') }}">Mikroblog</a></li>
+    {% if not session.logged_in %}
+        <li><a href="{{ url_for('login') }}">Zaloguj się!</a></li>
+    {% else %}
+        <li><a href="{{ url_for('login') }}">Zaloguj się!</a></li>
+    {% endif %}
+    <br><br>
 </header>

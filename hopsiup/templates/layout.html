@@ -3,17 +3,6 @@
 <link rel=stylesheet type=text/css href="/static/css/main.css">
 {% include 'header.html' %}
 <div class=page>
-  <div class=metanav>
-  {% if not session.logged_in %}
-   <p align="right">
-       <a href="{{ url_for('login') }}">log in</a>
-   </p>
-  {% else %}
-   <p align="right">
-       <a href="{{ url_for('logout') }}">log out</a>
-   </p>
-  {% endif %}
-  </div>
   {% for message in get_flashed_messages() %}
     <div class=flash>{{ message }}</div>
   {% endfor %}
