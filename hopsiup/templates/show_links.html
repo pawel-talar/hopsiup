@@ -16,6 +16,12 @@
     <ul class="links">
     {% for link in links %}
         <li>
+            <button type="button">
+                <img src="../static/css/up.png" width="70%" height="70%" />
+            </button>
+            <button type="button">
+                <img src="../static/css/down.png" width="70%" height="70%" />
+            </button>
             <div class="lpoints">{{ link.points }}</div>
             <a href="l/{{link.id}}">{{link.title}} </a> dodany przez<a href="u/{{link.user_url}}"> {{link.user}}</a>
             <p>{{ link.desc }}</p>
