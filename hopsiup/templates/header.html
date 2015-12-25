@@ -1,12 +1,34 @@
 <header>
     <center><front size="34"> HOP SIUP </front></center>
-    <li><a href="{{ url_for('login') }}">Główna</a></li>
-    <li><a href="{{ url_for('login') }}">Poczekalnia</a></li>
-    <li><a href="{{ url_for('login') }}">Mikroblog</a></li>
-    {% if not session.logged_in %}
-        <li><a href="{{ url_for('login') }}">Zaloguj się!</a></li>
-    {% else %}
-        <li><a href="{{ url_for('login') }}">Zaloguj się!</a></li>
-    {% endif %}
+    <br>
+    <center>
+        <li>
+            <a href="{{ url_for('show_main') }}">Główna</a>
+        </li>
+        <li>
+            <a href="{{ url_for('login') }}">Poczekalnia</a>
+        </li>
+        <li>
+            <a href="{{ url_for('login') }}">Mikroblog</a>
+        </li>
+        <li>
+            <a href="{{ url_for('ranking') }}">Ranking</a>
+        </li>
+        <li>
+            <a href="{{ url_for('login') }}">Mój obszar</a>
+        </li>
+        <li>
+            <a href="{{ url_for('add_link') }}">Dodaj link</a>
+        </li>
+        {% if not session.logged_in %}
+            <li>
+                <a href="{{ url_for('login') }}">Zaloguj się!</a>
+            </li>
+        {% else %}
+            <li>
+                <a href="{{ url_for('logout') }}">Wyloguj się!</a>
+            </li>
+        {% endif %}
+    </center>
     <br><br>
 </header>
