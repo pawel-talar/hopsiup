@@ -26,6 +26,9 @@
             </li>
         {% else %}
             <li>
+                <a href="{{ url_for('add_link') }}">Moje konto</a>
+            </li>
+            <li>
                 <a href="{{ url_for('logout') }}">Wyloguj się!</a>
             </li>
         {% endif %}
