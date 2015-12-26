@@ -25,9 +25,10 @@ def show_main():
     links = [dict(points=row[0], id=row[1], title=row[2], desc=row[3], user=row[4]) for row in data.fetchall()]
     return render_template('show_links.html', links=links)
 
-@app.route('/user/<id>')
+@app.route('/user')
 def user_account():
-    data = g.db.execute('select l.lpoints, l.link_id')
+    data = g.db.execute('select l.lpoints, l.link_id, l.title, l.description, u.login from links as l,' +\
+            'users as u on l.user_id = u.user_id order by lpoints desc')
     links = [dict(points=row[0], id=row[1], title=row[2], desc=row[3], user=row[4]) for row in data.fetchall()]
     return render_template('user_account.html', links=links)
 
