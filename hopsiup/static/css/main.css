@@ -1,7 +1,7 @@
 html, body * {
     background-color: #444444;
     color: #e1e1e1;
-    max-width: 1000px;
+    max-width: 1100px;
     margin: auto;
 }
 ul.links li {
@@ -54,4 +54,8 @@ header li {
 
 img {
     display: inline-block;
+}
+
+#user_site li {
+    display: inline;
 }
