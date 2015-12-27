@@ -28,6 +28,13 @@ div.lpoints {
     font-weight: bold;
     margin-right: 10px;
 }
+.link_title {
+    float: left;
+    clear: right;
+}
+.link_desc {
+    clear: both;
+}
 header ul {
     float: left;
     width: 100%;

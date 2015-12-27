@@ -2,11 +2,14 @@
 
 {% block body %}
     <div class="link_info">
-
-        <h1>{{ link_info.title }}</h1>
-
+        <div class="lpoints">{{ link_info.points }}</div>
+        <div class="link_title">
+            <h1>{{ link_info.title }}</h1>
+        </div>
         <div class="link_desc">
+            <p>
             {{ link_info.desc }}
+            </p>
             Dodał: {{ link_info.author }}
         </div>
     </div>

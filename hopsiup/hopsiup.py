@@ -34,9 +34,9 @@ def user_account():
 
 @app.route('/l/<id>')
 def show_link_page(id=None):
-    data = g.db.execute('select l.link, l.title, u.login from links as l,' +
+    data = g.db.execute('select l.lpoints, l.link, l.title, l.description, u.login from links as l,' +
             'users as u on l.user_id == u.user_id where l.link_id={0}'.format(id))
-    link_infos = [dict(id=row[0], title=row[1], author=row[2]) for row in data.fetchall()]
+    link_infos = [dict(points=row[0], id=row[1], title=row[2], desc=row[3], author=row[4]) for row in data.fetchall()]
     return render_template('link_page.html', link_info=link_infos[0])
 
 @app.route('/add', methods=['POST'])
