@@ -32,6 +32,27 @@ def user_account():
     links = [dict(points=row[0], id=row[1], title=row[2], desc=row[3], user=row[4]) for row in data.fetchall()]
     return render_template('user_account.html', links=links)
 
+@app.route('/articles_stat')
+def user_articles_stat():
+    data = g.db.execute('select l.lpoints, l.link_id, l.title, l.description, u.login from links as l,' +\
+            'users as u on l.user_id = u.user_id order by lpoints desc')
+    links = [dict(points=row[0], id=row[1], title=row[2], desc=row[3], user=row[4]) for row in data.fetchall()]
+    return render_template('user_stat_articles.html', links=links)
+
+@app.route('/blog_stat')
+def user_blog_stat():
+    data = g.db.execute('select l.lpoints, l.link_id, l.title, l.description, u.login from links as l,' +\
+            'users as u on l.user_id = u.user_id order by lpoints desc')
+    links = [dict(points=row[0], id=row[1], title=row[2], desc=row[3], user=row[4]) for row in data.fetchall()]
+    return render_template('user_stat_blog.html', links=links)
+
+@app.route('/social_stat')
+def user_social_stat():
+    data = g.db.execute('select l.lpoints, l.link_id, l.title, l.description, u.login from links as l,' +\
+            'users as u on l.user_id = u.user_id order by lpoints desc')
+    links = [dict(points=row[0], id=row[1], title=row[2], desc=row[3], user=row[4]) for row in data.fetchall()]
+    return render_template('user_stat_social.html', links=links)
+
 @app.route('/l/<id>')
 def show_link_page(id=None):
     data = g.db.execute('select l.lpoints, l.link, l.title, l.description, u.login from links as l,' +

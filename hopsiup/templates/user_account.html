@@ -3,24 +3,15 @@
     <center>
         <h2> Twoje konto </h2>
     </center>
-        <div id="user_site">
+        <div id="user_site" align="center">
             <li>
-                 <a href="{{ url_for('show_main') }}">Twoje artykuły</a>
+                 <a href="{{ url_for('user_articles_stat') }}">Artykuły</a>
             </li>
             <li>
-                 <a href="{{ url_for('show_main') }}">Twoje wpisy</a>
+                 <a href="{{ url_for('user_blog_stat') }}">Wpisy</a>
             </li>
             <li>
-                 <a href="{{ url_for('show_main') }}">Twoje komentarze do artykułów</a>
-            </li>
-            <li>
-                 <a href="{{ url_for('show_main') }}">Twoje komentarze do wpisów</a>
-            </li>
-            <li>
-                 <a href="{{ url_for('show_main') }}">Zaplusowane wpisy</a>
-            </li>
-            <li>
-                 <a href="{{ url_for('show_main') }}">Zaplusowane artykuły</a>
+                 <a href="{{ url_for('user_social_stat') }}">Społeczność</a>
             </li>
         </div>
 {% endblock %}

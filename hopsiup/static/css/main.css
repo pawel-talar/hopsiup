@@ -63,6 +63,18 @@ img {
     display: inline-block;
 }
 
+#user_site a {
+    float: left;
+    width: 6em;
+    text-decoration: none;
+    color: white;
+    background-color: black;
+    padding: 0.2em 0.6em;
+    border-right: 1px solid white;
+    list-style-type: none;
+    list-style-image: none;
+}
+
 #user_site li {
     display: inline;
 }

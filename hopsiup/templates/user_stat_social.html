@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+{% block body %}
+    <center>
+        <h2> Twoje konto </h2>
+    </center>
+        <div id="user_site" align="center">
+            <li>
+                 <a href="{{ url_for('show_main') }}"> Obserwowani </a>
+            </li>
+            <li>
+                 <a href="{{ url_for('show_main') }}"> Obserwujący </a>
+            </li>
+        </div>
+{% endblock %}
