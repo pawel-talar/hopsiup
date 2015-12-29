@@ -1,23 +1,27 @@
 {% extends "layout.html" %}
 {% block body %}
-    <center>
-        <h2> Twoje konto </h2>
-    </center>
-        <div id="user_site" align="center">
-            <li>
-                 <a href="{{ url_for('show_main') }}"> Opublikowane </a>
-            </li>
-            <li>
-                 <a href="{{ url_for('show_main') }}"> Dodane </a>
-            </li>
-            <li>
-                 <a href="{{ url_for('show_main') }}"> Zaplusowane </a>
-            </li>
-            <li>
-                 <a href="{{ url_for('show_main') }}"> Zminusowane </a>
-            </li>
-            <li>
-                 <a href="{{ url_for('show_main') }}"> Twoje komentarze </a>
-            </li>
-        </div>
+    {% if session.logged_in %}
+        <center>
+            <h2> Twoje konto </h2>
+        </center>
+            <div id="user_site" align="center">
+                <li>
+                     <a href="{{ url_for('show_main') }}"> Opublikowane </a>
+                </li>
+                <li>
+                     <a href="{{ url_for('show_main') }}"> Dodane </a>
+                </li>
+                <li>
+                     <a href="{{ url_for('show_main') }}"> Zaplusowane </a>
+                </li>
+                <li>
+                     <a href="{{ url_for('show_main') }}"> Zminusowane </a>
+                </li>
+                <li>
+                     <a href="{{ url_for('show_main') }}"> Komentarze </a>
+                </li>
+            </div>
+        {% else %}
+            <center> <b> BRAK DOSTĘPU </b> </center>
+    {% endif %}
 {% endblock %}
