@@ -44,7 +44,7 @@ header ul {
     list-style-image: none;
 }
 header a {
-    float: left;
+    float: center;
     width: 6em;
     text-decoration: none;
     color: white;
@@ -64,7 +64,7 @@ img {
 }
 
 #user_site a {
-    float: left;
+    float: center;
     width: 6em;
     text-decoration: none;
     color: white;
