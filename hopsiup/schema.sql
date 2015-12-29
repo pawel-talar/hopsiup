@@ -8,6 +8,7 @@ create table users (
     login text not null unique,
     password text not null,
     info text not null,
+    registered_on text not null default(date('now')),
     upoints integer not null default(0)
 );
 
@@ -18,6 +19,7 @@ create table links (
     description text not null default 'brak opisu',
     user_id integer not null,
     lpoints integer not null default(0),
+    added_on text not null default(date('now')),
     foreign key(user_id) references users(user_id)
 );
 
@@ -25,6 +27,7 @@ create table comments (
     comment_id integer primary key autoincrement,
     link_id integer,
     cpoints integer not null default(0),
+    added_on text not null default(date('now')),
     foreign key(link_id) references links(link_id)
 );
 
