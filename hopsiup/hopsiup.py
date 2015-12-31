@@ -1,6 +1,6 @@
 import sqlite3
 from flask import Flask, request, session, g, redirect, \
-     abort, render_template, flash
+     abort, render_template, flash, url_for
 
 app = Flask(__name__)
 app.config.from_object('init')
@@ -76,14 +76,14 @@ def login():
         data = g.db.execute('select login, password from users')
         users_from_db = [dict(login=row[0], password=row[1])\
                 for row in data.fetchall()]
-        if a not in users_from_db:
-            error = 'Invalid username'
-        elif users_from_db[a] != password:
-            error = 'Invalid password'
-        else:
-            session['logged_in'] = True
-            flash('You were logged in')
-            return redirect(url_for('show_main'))
+        print(users_from_db)
+        for row in users_from_db:
+            if row["login"] == username and row["password"] == password:
+                session['logged_in'] = True
+                session['user'] = username
+                flash('Zalogowano pomyślnie!')
+                return redirect(url_for('show_main'))
+        error = 'Invalid username or password'
     return render_template('login.html', error=error)
 
 @app.route('/logout')
