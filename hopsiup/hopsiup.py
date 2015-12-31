@@ -67,6 +67,12 @@ def add_link():
     g.db.execute('insert into links (link, title, user_id) values (?, ?)',
                  [request.form('url'), request.form['title'], request.form['user_id']])
 
+def register_user(username, password):
+    g.db.execute('insert into users (login, password) values (?, ?)',
+                 [username, password])
+    g.db.commit()
+
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     error = None
@@ -83,7 +89,11 @@ def login():
                 session['user'] = username
                 flash('Zalogowano pomyślnie!')
                 return redirect(url_for('show_main'))
-        error = 'Invalid username or password'
+        register_user(username, password)
+        session['logged_in'] = True
+        session['user'] = username
+        flash('Zalogowano pomyślnie!')
+        return redirect(url_for('show_main'))
     return render_template('login.html', error=error)
 
 @app.route('/logout')
