@@ -1,0 +1,24 @@
+{
+  "name": "hopsiup",
+  "homepage": "https://github.com/PabloRal/hopsiup",
+  "authors": [
+    "Łukasz Hryniuk <lukasz.hryniuk@wp.pl>",
+    "Paweł Talar <ptalar15@gmail.com>"
+  ],
+  "description": "",
+  "main": "hopsiup/hopsiup.py",
+  "moduleType": [],
+  "license": "GPLv3",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.4",
+    "bootstrap": "~3.3.6"
+  }
+}
