@@ -1,8 +1,15 @@
 {% extends "layout.html" %}
 {% block body %}
-    <ul>
+<div class="row">
+    <div class="col-md-12">
+    <table class="table table-condensed">
+        <tr><th scope="col">login</th> <th scope="col">punkty</th></tr>
         {% for user in users %}
-            <li> {{ user.login }} {{ user.points }}</li>
+            <tr>
+                <td>{{ user.login }}</td><td>{{ user.points }}</td>
+            </tr>
         {%  endfor %}
-    </ul>
+    </table>
+    </div>
+</div>
 {% endblock %}
