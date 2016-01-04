@@ -34,6 +34,9 @@ div.lpoints {
 .link_desc {
     clear: both;
 }
+header {
+    margin-bottom: 50px;
+}
 header ul {
     float: left;
     width: 100%;
