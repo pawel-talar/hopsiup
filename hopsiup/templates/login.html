@@ -2,12 +2,14 @@
 {% block body %}
   {% if error %}<p class=error><strong>Error:</strong> {{ error }}{% endif %}
   <form action="{{ url_for('login') }}" method=post>
-    <dl>
-      <dt>Nazwa użytkownika:
-      <dd><input type=text name=username>
-      <dt>Hasło:
-      <dd><input type=password name=password>
-      <dd><input type=submit value=Zaloguj>
-    </dl>
+      <div class="form-group">
+          <label for="username">login</label>
+          <input type="text" class="form-control" id="username" name="username">
+      </div>
+      <div class="form-group">
+          <label for="password">hasło</label>
+          <input type="password" class="form-control" id="password" name="password">
+      </div>
+      <button type="submit" class="btn btn-success">Zaloguj</button>
   </form>
 {% endblock %}
