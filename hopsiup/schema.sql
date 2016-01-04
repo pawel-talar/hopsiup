@@ -31,6 +31,15 @@ create table comments (
     foreign key(link_id) references links(link_id)
 );
 
+
+create table posts (
+    post_id integer primary key autoincrement,
+    content text not null,
+    ppoints integer not null default(0),
+    added_on text not null default(date('now')),
+    foreign key(user_id) references users(user_id)
+);
+
 create table tags (
     tag_id integer primary key autoincrement,
     name text not null
