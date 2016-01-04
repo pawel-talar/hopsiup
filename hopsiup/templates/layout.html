@@ -1,6 +1,12 @@
 <!doctype html>
+<html lang=pl>
 <title>HopSiup</title>
+<meta charset=utf-8>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="/static/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 <link rel=stylesheet type=text/css href="/static/css/main.css">
+<main>
+<div class="container">
 {% include 'header.html' %}
 <div class=page>
   {% for message in get_flashed_messages() %}
@@ -8,5 +14,7 @@
   {% endfor %}
   {% block body %}{% endblock %}
 </div>
-<br><br><br>
 {% include 'footer.html' %}
+</div>
+</main>
+</html>
