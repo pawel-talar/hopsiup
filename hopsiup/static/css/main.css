@@ -10,8 +10,7 @@ ul.links li {
     color: #9C1A1C;
     border: solid #11557C;
     padding: 5px;
-    width: 400px;
-    height: 80px;
+    max-height: 100px;
     margin: 10px;
 }
 
