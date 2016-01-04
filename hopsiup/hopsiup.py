@@ -127,7 +127,7 @@ def logout():
 
 @app.route('/ranking')
 def ranking():
-    data = g.db.execute('select login, upoints from users order by upoints')
+    data = g.db.execute('select login, upoints from users order by upoints desc')
     users = [dict(login=row[0], points=row[1]) for row in data.fetchall()]
     return render_template('ranking.html', users=users)
 
