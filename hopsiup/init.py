@@ -1,5 +1,5 @@
 # configuration
-DATABASE = '/tmp/hopsiup.db'
+DATABASE = 'hopsiup.db'
 DEBUG = True
 SECRET_KEY = 'development key'
 USERNAME = 'admin'

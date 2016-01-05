@@ -1,3 +1,3 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
-sqlite3 /tmp/hopsiup.db < schema.sql
+sqlite3 hopsiup.db < schema.sql
