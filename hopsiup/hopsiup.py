@@ -1,9 +1,38 @@
+import os
 import sqlite3
 from flask import Flask, request, session, g, redirect, \
     abort, render_template, flash, url_for
+from flask.ext import assets
 
 app = Flask(__name__)
 app.config.from_object('init')
+
+env = assets.Environment(app)
+
+env.load_path = [
+    os.path.join(os.path.dirname(__file__), 'coffee'),
+    os.path.join(os.path.dirname(__file__), 'bower_components'),
+]
+
+env.register(
+    'js_all',
+    assets.Bundle(
+        'jquery/dist/jquery.min.js',
+        assets.Bundle(
+            'all.coffee',
+            filters=['coffeescript']
+        ),
+        output='js_all.js'
+    )
+)
+
+env.register(
+    'css_all',
+    assets.Bundle(
+        'bootstrap/dist/css/bootstrap.min.css',
+        output='css_all.css'
+    )
+)
 
 
 def connect_db():
@@ -133,4 +162,4 @@ def ranking():
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)
