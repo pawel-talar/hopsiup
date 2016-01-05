@@ -3,9 +3,14 @@
 <title>HopSiup</title>
 <meta charset=utf-8>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link href="/static/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+{% assets "css_all" %}
+    <link rel="stylesheet" type="text/css" href="{{ ASSET_URL }}"></script>
+{% endassets %}
 <link rel=stylesheet type=text/css href="/static/css/main.css">
 <main>
+{% assets "js_all" %}
+    <script type="text/javascript" src="{{ ASSET_URL }}"></script>
+{% endassets %}
 <div class="container-fluid">
 {% include 'header.html' %}
 </div>
