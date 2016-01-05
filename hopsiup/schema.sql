@@ -1,6 +1,7 @@
 drop table if exists users;
 drop table if exists links;
 drop table if exists comments;
+drop table if exists posts;
 drop table if exists tags;
 
 create table users (
@@ -36,6 +37,7 @@ create table posts (
     post_id integer primary key autoincrement,
     content text not null,
     ppoints integer not null default(0),
+    user_id integer not null,
     added_on text not null default(date('now')),
     foreign key(user_id) references users(user_id)
 );
