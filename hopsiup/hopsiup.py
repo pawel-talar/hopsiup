@@ -70,6 +70,13 @@ def show_waiting():
     links = [dict(points=row[0], id=row[1], title=row[2], desc=row[3], user=row[4]) for row in data.fetchall()]
     return render_template('show_waiting_links.html', links=links)
 
+@app.route('/user_area')
+def user_area():
+    data = g.db.execute('select l.lpoints, l.link_id, l.title, l.description, u.login from links as l,' + \
+                        'users as u on l.user_id = u.user_id order by lpoints desc')
+    links = [dict(points=row[0], id=row[1], title=row[2], desc=row[3], user=row[4]) for row in data.fetchall()]
+    return render_template('user_area.html', links=links)
+
 @app.route('/user')
 def user_account():
     data = g.db.execute('select l.lpoints, l.link_id, l.title, l.description, u.login from links as l,' + \
