@@ -8,6 +8,9 @@ create table users (
     user_id integer primary key autoincrement,
     login text not null unique,
     password text not null,
+    sex text not null default '-',
+    city text not null default '-',
+    age integer,
     info text not null default(''),
     registered_on text not null default(date('now')),
     upoints integer not null default(0)
