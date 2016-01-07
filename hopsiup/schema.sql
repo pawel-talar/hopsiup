@@ -8,9 +8,9 @@ create table users (
     user_id integer primary key autoincrement,
     login text not null unique,
     password text not null,
-    sex text not null default '-',
-    city text not null default '-',
-    age integer,
+    sex text not null default('-'),
+    city text not null default('-'),
+    age integer default(0),
     info text not null default(''),
     registered_on text not null default(date('now')),
     upoints integer not null default(0)
@@ -38,7 +38,6 @@ create table comments (
 create table posts (
     post_id integer primary key autoincrement,
     content text not null,
-    user_id integer not null,
     ppoints integer not null default(0),
     user_id integer not null,
     added_on text not null default(date('now')),
