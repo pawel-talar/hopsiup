@@ -11,10 +11,7 @@
 {% assets "js_all" %}
     <script type="text/javascript" src="{{ ASSET_URL }}"></script>
 {% endassets %}
-<div class="container-fluid">
-{% include 'header.html' %}
-</div>
-<div class="container">
+{% include 'menu.html' %}
   {% for message in get_flashed_messages() %}
     <div class=flash>{{ message }}</div>
   {% endfor %}
