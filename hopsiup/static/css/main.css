@@ -80,3 +80,15 @@ img {
 #user_site li {
     display: inline;
 }
+
+#main-content {
+    clear: both;
+    margin-top: 70px;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 30px;
+}

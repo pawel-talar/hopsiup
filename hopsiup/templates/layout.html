@@ -12,9 +12,12 @@
     <script type="text/javascript" src="{{ ASSET_URL }}"></script>
 {% endassets %}
 {% include 'menu.html' %}
+
+<div class="container" id="main-content">
   {% for message in get_flashed_messages() %}
     <div class=flash>{{ message }}</div>
   {% endfor %}
+
   {% block body %}{% endblock %}
 </div>
 <div class="container-fluid">
