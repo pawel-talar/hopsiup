@@ -3,6 +3,7 @@ drop table if exists links;
 drop table if exists comments;
 drop table if exists posts;
 drop table if exists tags;
+drop table if exists messages;
 
 create table users (
     user_id integer primary key autoincrement,
@@ -47,4 +48,14 @@ create table posts (
 create table tags (
     tag_id integer primary key autoincrement,
     name text not null
+);
+
+create table messages (
+    mid integer primary key autoincrement,
+    from_uid integer not null,
+    to_uid integer not null,
+    content text not null,
+    sent_on text not null default(date('now')),
+    foreign key(from_uid) references users(user_id),
+    foreign key(to_uid) references users(user_id)
 );
