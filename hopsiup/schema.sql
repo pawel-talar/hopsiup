@@ -47,7 +47,9 @@ create table posts (
 
 create table tags (
     tag_id integer primary key autoincrement,
-    name text not null
+    name text not null,
+    unumber integer not null default(0),
+    pnumber integer not null default(0)
 );
 
 create table messages (
