@@ -11,7 +11,6 @@ create table users (
     password text not null,
     sex text not null default('-'),
     city text not null default('-'),
-    age integer default(0),
     info text not null default(''),
     registered_on text not null default(date('now')),
     upoints integer not null default(0)

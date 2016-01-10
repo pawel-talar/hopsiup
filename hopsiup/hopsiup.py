@@ -121,8 +121,12 @@ def show_link_page(id=None):
 def add_link():
     #if not session.get('logged_in'):
     #g.db.execute('insert into links (link, title, user_id) values (?, ?)',
-    #             [request.form('url'), request.form['title'], request.form['user_id']])
+     #            [request.form('url'), request.form['title'], request.form['user_id']])
     return render_template('add_link.html')
+
+@app.route('/register')
+def register():
+    return render_template('register.html')
 
 def register_user(username, password):
     g.db.execute('insert into users (login, password) values (?, ?)',

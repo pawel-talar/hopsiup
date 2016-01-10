@@ -12,6 +12,7 @@
         <ul class="nav navbar-nav navbar-right">
             {% if not session.logged_in %}
                 <li> <a href="{{ url_for('login') }}">Zaloguj się!</a> </li>
+                <li> <a href="{{ url_for('register') }}">Zarejestruj się!</a> </li>
             {% else %}
                 <li> <a href="{{ url_for('user_account') }}">Moje konto</a> </li>
                 <li> <a href="{{ url_for('add_link') }}">Dodaj link</a> </li>
