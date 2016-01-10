@@ -116,6 +116,9 @@ def show_link_page(id=None):
     link_infos = [dict(points=row[0], id=row[1], title=row[2], desc=row[3], author=row[4]) for row in data.fetchall()]
     return render_template('link_page.html', link_info=link_infos[0])
 
+@app.route('/messages')
+def messages():
+    pass
 
 @app.route('/add', methods=['POST'])
 def add_link():
