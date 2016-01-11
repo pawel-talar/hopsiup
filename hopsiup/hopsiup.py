@@ -118,7 +118,10 @@ def show_link_page(id=None):
 
 @app.route('/messages')
 def messages():
-    pass
+    data = g.db.execute('select content, sent_on from messages ' +
+                        'where to_uid = {0}'.format(session['uid']))
+    messages_to = [dict(content=row[0], date=row[1]) for row in data.fetchall()]
+    return render_template('messages.html', messages=messages_to)
 
 @app.route('/add', methods=['POST'])
 def add_link():
