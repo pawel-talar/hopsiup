@@ -1,0 +1,10 @@
+{% extends "layout.html" %}
+{% block body %}
+<div class="col-md-8">
+    <ul>
+        {% for m in messages %}
+            <li>{{m.content}} {{m.date}}</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}
