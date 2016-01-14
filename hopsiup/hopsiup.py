@@ -121,7 +121,9 @@ def messages():
     data = g.db.execute('select content, sent_on from messages ' +
                         'where to_uid = {0}'.format(session['uid']))
     messages_to = [dict(content=row[0], date=row[1]) for row in data.fetchall()]
-    return render_template('messages.html', messages=messages_to)
+    data2 = g.db.execute('select user_id, login from users where user_id != {0}'.format(session['uid']))
+    users = [dict(id=row[0], login=row[1]) for row in data2.fetchall()]
+    return render_template('messages.html', messages=messages_to, users=users)
 
 @app.route('/add', methods=['POST'])
 def add_link():
