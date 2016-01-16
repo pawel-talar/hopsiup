@@ -139,8 +139,8 @@ def add_link():
         desc = request.form['desc']
         userid = session['uid']
         add_new_link(title, link, desc, userid)
-        return redirect(url_for('show_main'))
         flash('Dodano link pomyslnie!')
+        return redirect(url_for('show_main'))
     return render_template('add_link.html', error=error)
 
 @app.route('/register')
