@@ -1,16 +1,25 @@
 {% extends "layout.html" %}
 {% block body %}
-  <div id="session">
-  {% if session.logged_in %}
-    <form action="{{ url_for('add_link') }}" method=post class=add-entry>
-      <dl>
-        <dt>Tytył:
-        <dd><input type=text size=30 name=title>
-        <dt>Tekst:
-        <dd><textarea name=text rows=5 cols=40></textarea>
-        <dd><input type=submit value=Share>
-      </dl>
-    </form>
-  {% endif %}
-  </div>
+<div class="col-md-8">
+    <ul>
+        {% for l in links %}
+            <li>{{l.content}} {{l.date}}</li>
+        {% endfor %}
+    </ul>
+</div>
+<div class="col-md-8 new-link">
+    <h4>Dodawanie linku</h4>
+    <br />
+    Tytuł:
+    <input type="text" class="form-control">
+    </input>
+    <br />
+    Link:
+    <input type="text" class="form-control">
+    <br />
+    Opis:
+    <input type="text" class="form-control">
+    <br />
+    <input class="btn btn-default" type="submit" value="Opublikuj!">
+</div>
 {% endblock %}
