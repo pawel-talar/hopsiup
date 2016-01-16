@@ -143,13 +143,20 @@ def add_link():
         return redirect(url_for('show_main'))
     return render_template('add_link.html', error=error)
 
-@app.route('/register')
+@app.route('/register', methods=['GET', 'POST'])
 def register():
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+        email = request.form['email']
+        register_user(username, password, email)
+        flash('Zarejestrowano pomyslnie, teraz mozesz sie zalogowac!')
+        return redirect(url_for('login'))
     return render_template('register.html')
 
-def register_user(username, password):
-    g.db.execute('insert into users (login, password) values (?, ?)',
-                 [username, password])
+def register_user(username, password, email):
+    g.db.execute('insert into users (login, password, email) values (?, ?, ?)',
+                 [username, password, email])
     g.db.commit()
 
 
@@ -170,11 +177,6 @@ def login():
                 session['uid'] = row["uid"]
                 flash('Zalogowano pomyslnie!')
                 return redirect(url_for('show_main'))
-        register_user(username, password)
-        session['logged_in'] = True
-        session['user'] = username
-        flash('Zalogowano pomyslnie!')
-        return redirect(url_for('show_main'))
     return render_template('login.html', error=error)
 
 

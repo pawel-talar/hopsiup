@@ -1,18 +1,18 @@
 {% extends "layout.html" %}
 {% block body %}
   {% if error %}<p class=error><strong>Error:</strong> {{ error }}{% endif %}
-  <form action="{{ url_for('login') }}" method=post>
+  <form action="{{ url_for('register') }}" method=post>
       <div class="form-group">
           <label for="username">Login</label>
           <input type="text" class="form-control" id="username" name="username">
       </div>
       <div class="form-group">
           <label for="email">Adres email</label>
-          <input type="email" class="form-control" id="email" name="email">
+          <input type="text" class="form-control" id="email" name="email">
       </div>
       <div class="form-group">
           <label for="password">Hasło</label>
-          <input type="password" class="form-control" id="password" name="password">
+          <input type="text" class="form-control" id="password" name="password">
       </div>
       <button type="submit" class="btn btn-success">Zarejestruj</button>
   </form>

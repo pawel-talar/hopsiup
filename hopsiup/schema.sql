@@ -9,6 +9,7 @@ create table users (
     user_id integer primary key autoincrement,
     login text not null unique,
     password text not null,
+    email text not null,
     sex text not null default('-'),
     city text not null default('-'),
     info text not null default(''),
