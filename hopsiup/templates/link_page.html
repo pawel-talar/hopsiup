@@ -13,13 +13,14 @@
             Dodał: {{ link_info.author }}
         </div>
     </div>
+    <br />
     <div id="session">
     {% if session.logged_in %}
-    <form action="{{ url_for('add_comment') }}" method=post class=add-entry>
+    <form action="{{ url_for('show_link_page', id=link_info.id) }}" method=post class=add-entry>
       <dl>
-        <dt>Tekst:
+        <dt>Treść komentarza:
         <dd><textarea name=text rows=5 cols=40></textarea>
-        <dd><input type=submit value=Share>
+        <dd><input type=submit value=Wyślij!>
       </dl>
     </form>
    {% endif %}
