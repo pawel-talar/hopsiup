@@ -125,9 +125,23 @@ def messages():
     users = [dict(id=row[0], login=row[1]) for row in data2.fetchall()]
     return render_template('messages.html', messages=messages_to, users=users)
 
-@app.route('/add')
+def add_new_link(title, link, desc, userid):
+    g.db.execute('insert into links (title, link, description, user_id) values (?, ?, ?, ?)',
+                 [title, link, desc, userid])
+    g.db.commit()
+
+@app.route('/add', methods=['GET', 'POST'])
 def add_link():
-    return render_template('add_link.html')
+    error = None
+    if request.method == 'POST':
+        title = request.form['title']
+        link = request.form['link']
+        desc = request.form['desc']
+        userid = session['uid']
+        add_new_link(title, link, desc, userid)
+        return redirect(url_for('show_main'))
+        flash('Dodano link pomyslnie!')
+    return render_template('add_link.html', error=error)
 
 @app.route('/register')
 def register():
@@ -167,7 +181,7 @@ def login():
 @app.route('/logout')
 def logout():
     session.pop('logged_in', None)
-    flash('You were logged out')
+    flash('Wylogowales sie pomyslnie!')
     return redirect(url_for('show_main'))
 
 
