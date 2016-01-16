@@ -125,7 +125,7 @@ def messages():
     users = [dict(id=row[0], login=row[1]) for row in data2.fetchall()]
     return render_template('messages.html', messages=messages_to, users=users)
 
-@app.route('/add', methods=['POST'])
+@app.route('/add')
 def add_link():
     return render_template('add_link.html')
 
