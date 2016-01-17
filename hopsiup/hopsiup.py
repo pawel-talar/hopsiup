@@ -149,6 +149,14 @@ def register():
         username = request.form['username']
         password = request.form['password']
         email = request.form['email']
+        data = g.db.execute('select user_id, login from users')
+        users_from_db = [dict(uid=row[0], login=row[1]) \
+                         for row in data.fetchall()]
+        print(users_from_db)
+        for row in users_from_db:
+            if row["login"] == username:
+                flash('Login zajety przez innego uzytkownika!')
+                return redirect(url_for('register'))
         register_user(username, password, email)
         flash('Zarejestrowano pomyslnie, teraz mozesz sie zalogowac!')
         return redirect(url_for('login'))
@@ -177,6 +185,8 @@ def login():
                 session['uid'] = row["uid"]
                 flash('Zalogowano pomyslnie!')
                 return redirect(url_for('show_main'))
+            flash('Bledny login lub haslo!')
+            return redirect(url_for('login'))
     return render_template('login.html', error=error)
 
 
