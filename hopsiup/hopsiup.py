@@ -152,7 +152,6 @@ def register():
         data = g.db.execute('select user_id, login from users')
         users_from_db = [dict(uid=row[0], login=row[1]) \
                          for row in data.fetchall()]
-        print(users_from_db)
         for row in users_from_db:
             if row["login"] == username:
                 flash('Login zajety przez innego uzytkownika!')
@@ -177,7 +176,6 @@ def login():
         data = g.db.execute('select user_id, login, password from users')
         users_from_db = [dict(uid=row[0], login=row[1], password=row[2]) \
                          for row in data.fetchall()]
-        print(users_from_db)
         for row in users_from_db:
             if row["login"] == username and row["password"] == password:
                 session['logged_in'] = True
