@@ -197,8 +197,8 @@ def login():
                 session['uid'] = row["uid"]
                 flash('Zalogowano pomyslnie!')
                 return redirect(url_for('show_main'))
-            flash('Bledny login lub haslo!')
-            return redirect(url_for('login'))
+        flash('Bledny login lub haslo!')
+        return redirect(url_for('login'))
     return render_template('login.html', error=error)
 
 
