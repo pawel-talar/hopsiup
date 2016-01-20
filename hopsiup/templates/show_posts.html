@@ -1,8 +1,15 @@
 {% extends "layout.html" %}
 {% block body %}
+<div class="col-md-8">
+    <ul>
+        {% for p in posts %}
+            <li>{{p.content}} {{p.date}}</li>
+        {% endfor %}
+    </ul>
+</div>
     <div id="session">
     {% if session.logged_in %}
-    <form action="{{ url_for('add_link') }}" method=post>
+    <form action="{{ url_for('show_blog') }}" method=post>
           <div class="form-group">
               <label for="content"></label>
               <input type="text" class="form-control" id="content" name="content">

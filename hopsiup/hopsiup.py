@@ -58,11 +58,6 @@ def show_main():
     links = [dict(points=row[0], id=row[1], title=row[2], desc=row[3], user=row[4]) for row in data.fetchall()]
     return render_template('show_links.html', links=links)
 
-
-@app.route('/mikroblog')
-def show_blog():
-    return render_template('show_posts.html')
-
 @app.route('/waiting')
 def show_waiting():
     data = g.db.execute('select l.lpoints, l.link_id, l.title, l.description, u.login from links as l,' + \
@@ -131,8 +126,18 @@ def add_new_link(title, link, desc, userid):
     g.db.commit()
 
 def add_new_post(content, userid):
-    g.db.execute('insert into posts (content, userid) calues(?, ?)', [content, userid])
+    g.db.execute('insert into posts (content, user_id) values(?, ?)', [content, userid])
     g.db.commit()
+
+@app.route('/mikroblog', methods=['GET', 'POST'])
+def show_blog():
+    error = None
+    if request.method == 'POST':
+        content = request.form['content']
+        userid = session['uid']
+        add_new_post(content, userid)
+        return redirect(url_for('show_blog'))
+    return render_template('show_posts.html', error=error)
 
 @app.route('/add', methods=['GET', 'POST'])
 def add_link():
