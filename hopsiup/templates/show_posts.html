@@ -1,8 +1,12 @@
 {% extends "layout.html" %}
 {% block body %}
-  <div id="session">
-  {% if session.logged_in %}
-      mirko soon
-  {% endif %}
-  </div>
+    <div id="session">
+    {% if session.logged_in %}
+      <dl>
+        <dd><textarea name=text rows=5 cols=40></textarea>
+        <dd><input type=submit  class="btn btn-default" value=Opublikuj!>
+      </dl>
+    </form>
+   {% endif %}
+   </div>
 {% endblock %}
