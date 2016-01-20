@@ -1,3 +1,6 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+
 import os
 import sqlite3
 from flask import Flask, request, session, g, redirect, \
