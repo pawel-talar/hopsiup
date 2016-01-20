@@ -2,10 +2,12 @@
 {% block body %}
     <div id="session">
     {% if session.logged_in %}
-      <dl>
-        <dd><textarea name=text rows=5 cols=40></textarea>
-        <dd><input type=submit  class="btn btn-default" value=Opublikuj!>
-      </dl>
+    <form action="{{ url_for('add_link') }}" method=post>
+          <div class="form-group">
+              <label for="content"></label>
+              <input type="text" class="form-control" id="content" name="content">
+          </div>
+        <input class="btn btn-default" type="submit" value="Opublikuj!">
     </form>
    {% endif %}
    </div>
