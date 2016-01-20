@@ -50,14 +50,6 @@ def teardown_request(exception):
     if db is not None:
         db.close()
 
-
-@app.route('/')
-def show_main():
-    data = g.db.execute('select l.lpoints, l.link_id, l.title, l.description, u.login from links as l,' + \
-                        'users as u on l.user_id = u.user_id order by lpoints desc')
-    links = [dict(points=row[0], id=row[1], title=row[2], desc=row[3], user=row[4]) for row in data.fetchall()]
-    return render_template('show_links.html', links=links)
-
 @app.route('/waiting')
 def show_waiting():
     data = g.db.execute('select l.lpoints, l.link_id, l.title, l.description, u.login from links as l,' + \
@@ -137,7 +129,17 @@ def show_blog():
         userid = session['uid']
         add_new_post(content, userid)
         return redirect(url_for('show_blog'))
-    return render_template('show_posts.html', error=error)
+    data = g.db.execute('select p.ppoints, p.post_id, p.content, u.login from posts as p,' + \
+                        'users as u on p.user_id = u.user_id')
+    posts = [dict(points=row[0], id=row[1], content=row[2], user=row[3]) for row in data.fetchall()]
+    return render_template('show_posts.html', error=error, posts=posts)
+
+@app.route('/')
+def show_main():
+    data = g.db.execute('select l.lpoints, l.link_id, l.title, l.description, u.login from links as l,' + \
+                        'users as u on l.user_id = u.user_id order by lpoints desc')
+    links = [dict(points=row[0], id=row[1], title=row[2], desc=row[3], user=row[4]) for row in data.fetchall()]
+    return render_template('show_links.html', links=links)
 
 @app.route('/add', methods=['GET', 'POST'])
 def add_link():
