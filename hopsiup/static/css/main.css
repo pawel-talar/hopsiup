@@ -34,6 +34,31 @@ div.lpoints {
 .link_desc {
     clear: both;
 }
+
+ul.posts li {
+    list-style-type: none;
+    list-style-image: none;
+    color: #9C1A1C;
+    border: solid #11557C;
+    padding: 5px;
+    max-height: 100px;
+    margin: 10px;
+}
+
+div.ppoints {
+    color: #00cc00;
+    display: inline;
+    width: 30px;
+    float: left;
+    margin: 0px;
+    border-color: whitesmoke;
+    border-style: solid;
+    border-width: 2px;
+    text-align: center;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
 header {
     margin-bottom: 50px;
 }
