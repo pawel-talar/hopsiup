@@ -1,14 +1,7 @@
 {% extends "layout.html" %}
 {% block body %}
-<div class="col-md-8">
-    <ul>
-        {% for p in posts %}
-            <li>{{p.content}} {{p.date}}</li>
-        {% endfor %}
-    </ul>
-</div>
-    <div id="session">
-    {% if session.logged_in %}
+<div id="session">
+{% if session.logged_in %}
     <form action="{{ url_for('show_blog') }}" method=post>
           <div class="form-group">
               <label for="content"></label>
@@ -16,6 +9,17 @@
           </div>
         <input class="btn btn-default" type="submit" value="Opublikuj!">
     </form>
-   {% endif %}
-   </div>
+{% endif %}
+</div>
+<br />
+<div class="col-md-8">
+    <ul class="posts">
+    {% for post in posts %}
+        <li>
+            <a href="p/{{post.id}}"> Wpis </a> dodany przez<a href="u/{{post.user_url}}"> {{post.user}}</a>
+            <p>{{ post.content }}</p>
+        </li>
+    {% endfor %}
+    </ul>
+</div>
 {% endblock %}
