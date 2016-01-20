@@ -130,6 +130,10 @@ def add_new_link(title, link, desc, userid):
                  [title, link, desc, userid])
     g.db.commit()
 
+def add_new_post(content, userid):
+    g.db.execute('insert into posts (content, userid) calues(?, ?)', [content, userid])
+    g.db.commit()
+
 @app.route('/add', methods=['GET', 'POST'])
 def add_link():
     error = None
