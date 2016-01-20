@@ -106,14 +106,24 @@ def show_link_page(id=None):
     link_infos = [dict(points=row[0], id=row[1], title=row[2], desc=row[3], author=row[4]) for row in data.fetchall()]
     return render_template('link_page.html', link_info=link_infos[0])
 
-@app.route('/messages')
+@app.route('/messages', methods=['GET', 'POST'])
 def messages():
     data = g.db.execute('select content, sent_on from messages ' +
                         'where to_uid = {0}'.format(session['uid']))
     messages_to = [dict(content=row[0], date=row[1]) for row in data.fetchall()]
     data2 = g.db.execute('select user_id, login from users where user_id != {0}'.format(session['uid']))
     users = [dict(id=row[0], login=row[1]) for row in data2.fetchall()]
+    if request.method == 'POST':
+        to_userid = request.form['to_userid']
+        content = request.form['content']
+        add_new_message(session['uid'], to_userid, content)
+        flash(u'Wiadomość została wysłana')
     return render_template('messages.html', messages=messages_to, users=users)
+
+def add_new_message(from_uid, to_uid, content):
+    g.db.execute('insert into messages (from_uid, to_uid, content) values (?, ?, ?)',
+                 [from_uid, to_uid, content])
+    g.db.commit()
 
 def add_new_link(title, link, desc, userid):
     g.db.execute('insert into links (title, link, description, user_id) values (?, ?, ?, ?)',

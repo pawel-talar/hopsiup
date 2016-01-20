@@ -10,13 +10,15 @@
 <div class="col-md-8 new-msg">
     <h4>Nowa wiadomość</h4>
     Do:
-    <select class="form-control">
+    <form action="{{ url_for('messages') }}" method=post>
+    <select name="to_userid" class="form-control">
         {% for u in users %}
         <option value="{{u.id}}">{{u.login}}</option>
         {% endfor %}
     </select>
     <br />
-    <input type="text" class="form-control">
+    <input type="text" class="form-control" name="content">
     <input class="btn btn-default" type="submit" value="Wyślij">
+    </form>
 </div>
 {% endblock %}
