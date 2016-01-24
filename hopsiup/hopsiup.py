@@ -99,11 +99,12 @@ def user_social_stat():
     return render_template('user_stat_social.html', links=links)
 
 
-@app.route('/l/<id>')
+@app.route('/l/<id>', methods=['GET', 'POST'])
 def show_link_page(id=None):
     data = g.db.execute('select l.lpoints, l.link, l.title, l.description, u.login from links as l,' +
                         'users as u on l.user_id == u.user_id where l.link_id={0}'.format(id))
     link_infos = [dict(points=row[0], id=row[1], title=row[2], desc=row[3], author=row[4]) for row in data.fetchall()]
+
     return render_template('link_page.html', link_info=link_infos[0])
 
 @app.route('/messages', methods=['GET', 'POST'])
@@ -133,6 +134,23 @@ def add_new_link(title, link, desc, userid):
 def add_new_post(content, userid):
     g.db.execute('insert into posts (content, user_id) values(?, ?)', [content, userid])
     g.db.commit()
+
+def add_new_comment(content, userid, linkid):
+    g.db.execute('insert into comments (content, user_id, link_id) values(?, ?, ?)', [content, userid, linkid])
+    g.db.commit()
+
+def show_link_page(id=None):
+    data = g.db.execute('select l.lpoints, l.link, l.title, l.description, u.login from links as l,' +
+                        'users as u on l.user_id = u.user_id where l.link_id={0}'.format(id))
+    link_infos = [dict(points=row[0], id=row[1], title=row[2], desc=row[3], author=row[4]) for row in data.fetchall()]
+    error = None
+    if request.method == 'POST':
+        content = request.form['content']
+        userid = session['uid']
+        linkid = link_infos[0]
+        add_new_comment(content, userid, linkid)
+        return redirect(url_for('show_link_page'))
+    return render_template('link_page.html', link_info=link_infos[0], error=error)
 
 @app.route('/mikroblog', methods=['GET', 'POST'])
 def show_blog():

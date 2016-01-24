@@ -31,6 +31,8 @@ create table links (
 create table comments (
     comment_id integer primary key autoincrement,
     link_id integer,
+    user_id integer,
+    content text not null,
     cpoints integer not null default(0),
     added_on text not null default(date('now')),
     foreign key(link_id) references links(link_id)

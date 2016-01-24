@@ -12,17 +12,17 @@
             </p>
             Dodał: {{ link_info.author }}
         </div>
-    </div>
     <br />
     <div id="session">
     {% if session.logged_in %}
-    <form action="{{ url_for('show_link_page', id=link_info.id) }}" method=post class=add-entry>
-      <dl>
-        <dt>Treść komentarza:
-        <dd><textarea name=text rows=5 cols=40></textarea>
-        <dd><input type=submit value=Wyślij!>
-      </dl>
-    </form>
-   {% endif %}
+        <form action="{{ url_for('show_link_page', id=link_info.id) }}" method=post>
+              <div class="form-group">
+                  <label for="content"></label>
+                  <input type="text" class="form-control" id="content" name="content">
+              </div>
+              <input class="btn btn-default" type="submit" value="Wyślij!">
+        </form>
+    {% endif %}
+    </div>
    </div>
 {% endblock %}
