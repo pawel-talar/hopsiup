@@ -14,6 +14,7 @@ env = assets.Environment(app)
 
 env.load_path = [
     os.path.join(os.path.dirname(__file__), 'coffee'),
+    os.path.join(os.path.dirname(__file__), 'static'),
     os.path.join(os.path.dirname(__file__), 'bower_components'),
 ]
 
